@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition - Health and Wellness Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Nutrition Tips and Products</h1>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="meetings.html">Wellness Hub</a>
+        <a href="nutrition.html" style="font-size:x-large; font-weight: bolder; color: green;">Nutrition</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="mental.html">Mental Health</a>
+    </nav>
+
+    <div class="container">
+        <div class="search-container">
+            <h2>Vitamin & Disease Information Lookup</h2>
+            <input type="text" id="searchInput" placeholder="Enter a disease, fruit, vegetable, or food item...">
+            <div id="result" class="result"></div>
+        </div>
+        <h2>Why Nutrition is Essential</h2>
+        <p>Proper nutrition is the foundation of good health. A balanced diet provides the essential nutrients to fuel your body, strengthen your immune system, and prevent chronic diseases.</p>
+
+        <h3>Health Benefits of Good Nutrition</h3>
+        <ul>
+            <li>Improves energy levels and brain function.</li>
+            <li>Strengthens immunity and supports long-term well-being.</li>
+            <li>Helps maintain a healthy weight and reduces disease risk.</li>
+            <li>Promotes healthy skin, hair, and nails.</li>
+        </ul>
+
+        <h3>Recommended Nutrition Products</h3>
+        <div class="products">
+            <div class="product">
+                <h4>Protein Powder</h4>
+                <p>Supports muscle recovery and growth. <a href="#">Buy Now</a></p>
+                <p><strong>Example:</strong> Helps athletes recover faster after workouts.</p>
+            </div>
+            <div class="product">
+                <h4>Vitamin C Supplements</h4>
+                <p>Boosts immunity and reduces fatigue. <a href="#">Buy Now</a></p>
+                <p><strong>Example:</strong> Helps reduce the severity of cold symptoms.</p>
+            </div>
+            <div class="product">
+                <h4>Fiber-Rich Snacks</h4>
+                <p>Improves digestion and gut health. <a href="#">Buy Now</a></p>
+                <p><strong>Example:</strong> Aids in weight management by keeping you full longer.</p>
+            </div>
+            <div class="product">
+                <h4>Omega-3 Supplements</h4>
+                <p>Supports heart and brain health. <a href="#">Buy Now</a></p>
+                <p><strong>Example:</strong> Reduces inflammation and improves joint mobility.</p>
+            </div>
+        </div>
+
+        <h3>Nutrition Tips</h3>
+        <ul>
+            <li>Plan your meals to include all major food groups: proteins, carbs, fats, vitamins, and minerals.</li>
+            <li>Stay hydrated by drinking plenty of water throughout the day.</li>
+            <li>Choose whole foods over processed options for better nutrient intake.</li>
+        </ul>
+
+        <h3>Example Success Story</h3>
+        <blockquote>
+            "After incorporating more fruits, vegetables, and supplements like Vitamin C, I noticed a significant improvement in my energy levels and overall mood." - Sarah, 32
+        </blockquote>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Health and Wellness Community Platform. All rights reserved.</p>
+    </footer>
+
+    <style>
+            /* Reset some default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body and overall page styling */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Navigation Bar Styling */
+    nav {
+        background-color: #333;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 1.2rem;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* Container for main content */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Product Section */
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .product {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .product h4 {
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .product p {
+        margin: 10px 0;
+    }
+
+    .product a {
+        color: #4CAF50;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .product a:hover {
+        text-decoration: underline;
+    }
+
+    /* Tips and Lists */
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+    }
+    /* body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+        } */
+
+        .search-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .suggestion {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .suggestion h3 {
+            color: #34495e;
+            margin: 0 0 5px 0;
+        }
+
+        .error {
+            color: #e74c3c;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .product {
+                padding: 15px;
+            }
+
+            footer {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .product {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 5px;
+            }
+        }
+    </style>    
+
+    <script>
+            const database = {
+            // Diseases and their vitamin recommendations
+            diseases: {
+                'anemia': {
+                    vitamins: ['Iron', 'Vitamin B12', 'Folate'],
+                    foods: ['Spinach', 'Red meat', 'Beans', 'Lentils', 'Fish'],
+                    description: 'These nutrients are essential for healthy red blood cell production.'
+                },
+                'high blood pressure': {
+                    vitamins: ['Potassium', 'Magnesium', 'Calcium'],
+                    foods: ['Bananas', 'Leafy greens', 'Sweet potatoes', 'Avocados', 'Greek yogurt'],
+                    description: 'These nutrients help regulate blood pressure and support cardiovascular health.'
+                },
+                'high cholesterol': {
+                    vitamins: ['Omega-3', 'Niacin', 'Fiber'],
+                    foods: ['Salmon', 'Oats', 'Nuts', 'Olive oil', 'Beans'],
+                    description: 'These nutrients help reduce bad cholesterol levels and support heart health.'
+                },
+
+                // Bone and Joint Conditions
+                'osteoporosis': {
+                    vitamins: ['Vitamin D', 'Calcium', 'Vitamin K'],
+                    foods: ['Milk', 'Yogurt', 'Cheese', 'Sardines', 'Leafy greens'],
+                    description: 'These nutrients help maintain bone density and strength.'
+                },
+                'arthritis': {
+                    vitamins: ['Vitamin D', 'Omega-3', 'Vitamin C'],
+                    foods: ['Fatty fish', 'Turmeric', 'Berries', 'Green tea', 'Nuts'],
+                    description: 'These nutrients have anti-inflammatory properties and support joint health.'
+                },
+
+                // Digestive Issues
+                'ibs': {
+                    vitamins: ['Fiber', 'Probiotics', 'Vitamin D'],
+                    foods: ['Greek yogurt', 'Ginger', 'Peppermint', 'Bananas', 'Rice'],
+                    description: 'These nutrients support digestive health and help manage IBS symptoms.'
+                },
+                'acid reflux': {
+                    vitamins: ['Fiber', 'Magnesium', 'Zinc'],
+                    foods: ['Oatmeal', 'Bananas', 'Melons', 'Almonds', 'Ginger'],
+                    description: 'These foods and nutrients help reduce acid production and soothe the digestive system.'
+                },
+
+                // Deficiency Diseases
+                'scurvy': {
+                    vitamins: ['Vitamin C'],
+                    foods: ['Oranges', 'Lemons', 'Strawberries', 'Bell peppers'],
+                    description: 'Vitamin C is crucial for collagen production and immune function.'
+                },
+                'rickets': {
+                    vitamins: ['Vitamin D', 'Calcium', 'Phosphorus'],
+                    foods: ['Fatty fish', 'Egg yolks', 'Fortified milk', 'Cheese', 'Mushrooms'],
+                    description: 'These nutrients are essential for proper bone development and strength.'
+                },
+
+                // Metabolic Conditions
+                'diabetes': {
+                    vitamins: ['Chromium', 'Magnesium', 'Vitamin D'],
+                    foods: ['Cinnamon', 'Leafy greens', 'Berries', 'Sweet potatoes', 'Nuts'],
+                    description: 'These nutrients help regulate blood sugar levels and improve insulin sensitivity.'
+                },
+                'thyroid disorders': {
+                    vitamins: ['Iodine', 'Selenium', 'Zinc'],
+                    foods: ['Seaweed', 'Brazil nuts', 'Fish', 'Eggs', 'Greek yogurt'],
+                    description: 'These nutrients support healthy thyroid function and hormone production.'
+                },
+
+                // Eye Conditions
+                'macular degeneration': {
+                    vitamins: ['Vitamin A', 'Lutein', 'Zeaxanthin'],
+                    foods: ['Carrots', 'Spinach', 'Sweet potatoes', 'Eggs', 'Corn'],
+                    description: 'These nutrients protect eye health and support vision.'
+                },
+                'cataracts': {
+                    vitamins: ['Vitamin C', 'Vitamin E', 'Zinc'],
+                    foods: ['Citrus fruits', 'Nuts', 'Seeds', 'Leafy greens', 'Fish'],
+                    description: 'These antioxidants help protect the lens of the eye and maintain vision.'
+                },
+
+                // Immune System
+                'frequent colds': {
+                    vitamins: ['Vitamin C', 'Vitamin D', 'Zinc'],
+                    foods: ['Citrus fruits', 'Garlic', 'Ginger', 'Yogurt', 'Honey'],
+                    description: 'These nutrients boost immune system function and help fight off infections.'
+                },
+                'autoimmune conditions': {
+                    vitamins: ['Vitamin D', 'Omega-3', 'Selenium'],
+                    foods: ['Fatty fish', 'Turmeric', 'Green tea', 'Berries', 'Leafy greens'],
+                    description: 'These nutrients help regulate immune system function and reduce inflammation.'
+                },
+
+                // Mental Health
+                'depression': {
+                    vitamins: ['Vitamin D', 'B-complex vitamins', 'Omega-3'],
+                    foods: ['Fatty fish', 'Dark chocolate', 'Bananas', 'Seeds', 'Leafy greens'],
+                    description: 'These nutrients support brain health and help regulate mood.'
+                },
+                'anxiety': {
+                    vitamins: ['Magnesium', 'Vitamin B12', 'Vitamin D'],
+                    foods: ['Dark chocolate', 'Avocados', 'Nuts', 'Chamomile tea', 'Blueberries'],
+                    description: 'These nutrients help calm the nervous system and support mental well-being.'
+                },
+
+                // Skin Conditions
+                'acne': {
+                    vitamins: ['Vitamin A', 'Zinc', 'Vitamin E'],
+                    foods: ['Sweet potatoes', 'Pumpkin seeds', 'Avocados', 'Green tea', 'Fish'],
+                    description: 'These nutrients support skin health and help regulate oil production.'
+                },
+                'eczema': {
+                    vitamins: ['Vitamin D', 'Vitamin E', 'Omega-3'],
+                    foods: ['Fatty fish', 'Avocados', 'Nuts', 'Seeds', 'Probiotic foods'],
+                    description: 'These nutrients help maintain skin barrier function and reduce inflammation.'
+                },
+
+                // Energy Related
+                'chronic fatigue': {
+                    vitamins: ['Iron', 'Vitamin B12', 'Magnesium'],
+                    foods: ['Lean meats', 'Eggs', 'Quinoa', 'Nuts', 'Leafy greens'],
+                    description: 'These nutrients support energy production and help combat fatigue.'
+                }
+            },
+
+            // Foods and their vitamin content
+            foods: {
+                'orange': {
+                    vitamins: ['Vitamin C', 'Folate', 'Potassium'],
+                    benefits: 'Supports immune system, skin health, and blood pressure regulation'
+                },
+                'banana': {
+                    vitamins: ['Vitamin B6', 'Potassium', 'Vitamin C'],
+                    benefits: 'Supports heart health, digestion, and muscle function'
+                },
+                'apple': {
+                    vitamins: ['Vitamin C', 'Potassium', 'Vitamin K'],
+                    benefits: 'Promotes gut health, helps with blood sugar regulation, and supports heart health'
+                },
+                'blueberries': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Manganese'],
+                    benefits: 'High in antioxidants, improves memory, and supports brain function'
+                },
+                'avocado': {
+                    vitamins: ['Vitamin K', 'Folate', 'Vitamin C', 'Vitamin B6'],
+                    benefits: 'Supports heart health, helps with nutrient absorption, and promotes healthy skin'
+                },
+
+                // Vegetables
+                'spinach': {
+                    vitamins: ['Iron', 'Vitamin K', 'Vitamin A', 'Folate'],
+                    benefits: 'Promotes healthy blood, bone strength, and eye health'
+                },
+                'kale': {
+                    vitamins: ['Vitamin K', 'Vitamin C', 'Vitamin A', 'Calcium'],
+                    benefits: 'Supports bone health, vision, and has anti-inflammatory properties'
+                },
+                'swiss chard': {
+                    vitamins: ['Vitamin K', 'Vitamin A', 'Vitamin C', 'Magnesium'],
+                    benefits: 'Supports blood sugar regulation, brain function, and bone health'
+                },
+                'arugula': {
+                    vitamins: ['Vitamin K', 'Calcium', 'Folate', 'Vitamin C'],
+                    benefits: 'Supports bone health, immune system, and has cancer-fighting properties'
+                },
+                'romaine lettuce': {
+                    vitamins: ['Vitamin A', 'Vitamin K', 'Vitamin C', 'Folate'],
+                    benefits: 'Promotes eye health, supports heart function, and aids in digestion'
+                },
+
+                // Cruciferous Vegetables
+                'broccoli': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Folate', 'Potassium'],
+                    benefits: 'Supports immune system, bone health, and may have anti-cancer properties'
+                },
+                'cauliflower': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Vitamin B6', 'Folate'],
+                    benefits: 'Supports brain health, aids in detoxification, and has anti-inflammatory properties'
+                },
+                'brussels sprouts': {
+                    vitamins: ['Vitamin K', 'Vitamin C', 'Folate', 'Vitamin B6'],
+                    benefits: 'Supports gut health, helps with inflammation, and aids in blood sugar control'
+                },
+                'cabbage': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Vitamin B6', 'Folate'],
+                    benefits: 'Supports digestive health, immune system, and has anti-inflammatory properties'
+                },
+
+                // Root Vegetables
+                'carrot': {
+                    vitamins: ['Vitamin A', 'Vitamin K', 'Potassium', 'Vitamin B6'],
+                    benefits: 'Promotes eye health, immune function, and skin health'
+                },
+                'sweet potato': {
+                    vitamins: ['Vitamin A', 'Vitamin C', 'Vitamin B6', 'Potassium'],
+                    benefits: 'Supports eye health, immune system, and helps regulate blood sugar'
+                },
+                'beetroot': {
+                    vitamins: ['Folate', 'Manganese', 'Potassium', 'Vitamin C'],
+                    benefits: 'Supports blood pressure, athletic performance, and brain function'
+                },
+                'radish': {
+                    vitamins: ['Vitamin C', 'Folate', 'Potassium', 'Vitamin B6'],
+                    benefits: 'Aids in digestion, supports liver function, and has anti-inflammatory properties'
+                },
+                'turnip': {
+                    vitamins: ['Vitamin C', 'Vitamin B6', 'Folate', 'Calcium'],
+                    benefits: 'Supports bone health, immune system, and aids in weight management'
+                },
+
+                // Nightshade Vegetables
+                'tomatoes': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Potassium', 'Lycopene'],
+                    benefits: 'Supports heart health, reduces cancer risk, and promotes skin health'
+                },
+                'bell peppers': {
+                    vitamins: ['Vitamin C', 'Vitamin A', 'Vitamin B6', 'Folate'],
+                    benefits: 'Supports eye health, immune system, and helps with iron absorption'
+                },
+                'eggplant': {
+                    vitamins: ['Vitamin K', 'Vitamin B6', 'Potassium', 'Manganese'],
+                    benefits: 'Supports heart health, aids in digestion, and helps with blood sugar control'
+                },
+
+                // Allium Vegetables
+                'garlic': {
+                    vitamins: ['Vitamin B6', 'Vitamin C', 'Manganese', 'Selenium'],
+                    benefits: 'Boosts immune system, reduces blood pressure, and has antimicrobial properties'
+                },
+                'onions': {
+                    vitamins: ['Vitamin C', 'Vitamin B6', 'Folate', 'Potassium'],
+                    benefits: 'Supports heart health, has anti-inflammatory properties, and boosts immune system'
+                },
+                'leeks': {
+                    vitamins: ['Vitamin K', 'Vitamin A', 'Vitamin C', 'Folate'],
+                    benefits: 'Supports bone health, aids in digestion, and has anti-inflammatory properties'
+                },
+
+                // Squash Varieties
+                'zucchini': {
+                    vitamins: ['Vitamin C', 'Vitamin B6', 'Potassium', 'Manganese'],
+                    benefits: 'Supports heart health, aids in weight management, and improves digestion'
+                },
+                'butternut squash': {
+                    vitamins: ['Vitamin A', 'Vitamin C', 'Vitamin E', 'Potassium'],
+                    benefits: 'Supports eye health, immune system, and skin health'
+                },
+                'pumpkin': {
+                    vitamins: ['Vitamin A', 'Vitamin C', 'Potassium', 'Vitamin E'],
+                    benefits: 'Promotes eye health, supports immune system, and aids in skin health'
+                },
+
+                // Legumes and Pods
+                'green beans': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Vitamin A', 'Folate'],
+                    benefits: 'Supports bone health, aids in vision, and helps with blood clotting'
+                },
+                'snap peas': {
+                    vitamins: ['Vitamin C', 'Vitamin K', 'Vitamin B6', 'Folate'],
+                    benefits: 'Supports heart health, aids in digestion, and provides sustained energy'
+                },
+                'asparagus': {
+                    vitamins: ['Vitamin K', 'Folate', 'Vitamin B1', 'Vitamin E'],
+                    benefits: 'Supports brain function, aids in digestion, and has anti-aging properties'
+                },
+
+                // Other Popular Vegetables
+                'mushrooms': {
+                    vitamins: ['Vitamin D', 'B vitamins', 'Selenium', 'Copper'],
+                    benefits: 'Supports immune system, bone health, and provides antioxidant protection'
+                },
+                'celery': {
+                    vitamins: ['Vitamin K', 'Vitamin A', 'Vitamin C', 'Folate'],
+                    benefits: 'Reduces inflammation, supports digestion, and helps lower blood pressure'
+                },
+                'cucumber': {
+                    vitamins: ['Vitamin K', 'Vitamin C', 'Potassium', 'Magnesium'],
+                    benefits: 'Promotes hydration, aids in weight management, and supports skin health'
+                },
+
+                // Proteins
+                'salmon': {
+                    vitamins: ['Vitamin D', 'Vitamin B12', 'Omega-3'],
+                    benefits: 'Supports brain health, bone strength, and heart health'
+                },
+                'eggs': {
+                    vitamins: ['Vitamin D', 'Vitamin B12', 'Vitamin A', 'Iron'],
+                    benefits: 'Supports brain development, eye health, and muscle strength'
+                },
+                'chicken': {
+                    vitamins: ['Vitamin B6', 'Vitamin B12', 'Niacin', 'Selenium'],
+                    benefits: 'Supports muscle growth, immune system, and energy production'
+                },
+                'greek yogurt': {
+                    vitamins: ['Vitamin B12', 'Calcium', 'Potassium', 'Zinc'],
+                    benefits: 'Promotes gut health, bone strength, and supports immune system'
+                },
+
+                // Nuts and Seeds
+                'almonds': {
+                    vitamins: ['Vitamin E', 'Magnesium', 'Manganese'],
+                    benefits: 'Supports heart health, brain function, and helps control blood sugar'
+                },
+                'chia seeds': {
+                    vitamins: ['Omega-3', 'Calcium', 'Magnesium', 'Zinc'],
+                    benefits: 'Supports heart health, bone strength, and provides sustained energy'
+                },
+                'walnuts': {
+                    vitamins: ['Omega-3', 'Vitamin E', 'Magnesium'],
+                    benefits: 'Supports brain health, reduces inflammation, and helps with heart health'
+                },
+
+                // Grains
+                'quinoa': {
+                    vitamins: ['Iron', 'Magnesium', 'Zinc', 'Folate'],
+                    benefits: 'Provides complete protein, supports energy levels, and aids in digestion'
+                },
+                'oats': {
+                    vitamins: ['Iron', 'Zinc', 'B Vitamins', 'Magnesium'],
+                    benefits: 'Helps lower cholesterol, supports heart health, and provides sustained energy'
+                },
+
+                // Legumes
+                'lentils': {
+                    vitamins: ['Iron', 'Folate', 'Potassium', 'Zinc'],
+                    benefits: 'Supports healthy pregnancy, provides energy, and helps with blood sugar control'
+                },
+                'chickpeas': {
+                    vitamins: ['Iron', 'Folate', 'Magnesium', 'Potassium'],
+                    benefits: 'Supports digestion, helps with weight management, and provides stable energy'
+                },
+
+                // Herbs and Spices
+                'turmeric': {
+                    vitamins: ['Iron', 'Vitamin B6', 'Manganese'],
+                    benefits: 'Powerful anti-inflammatory, supports joint health, and boosts immune system'
+                },
+                'ginger': {
+                    vitamins: ['Vitamin C', 'Magnesium', 'Potassium'],
+                    benefits: 'Aids digestion, reduces inflammation, and supports immune system'
+                },
+
+                // Beverages
+                'green tea': {
+                    vitamins: ['Vitamin C', 'Vitamin B2', 'Folate'],
+                    benefits: 'Rich in antioxidants, supports brain function, and aids in fat metabolism'
+                }
+            }
+        };
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            if (searchTerm.length < 2) {
+                resultDiv.innerHTML = '';
+                return;
+            }
+
+            // Check diseases
+            const diseaseMatch = Object.keys(database.diseases).find(disease => 
+                disease.includes(searchTerm));
+            
+            // Check foods
+            const foodMatch = Object.keys(database.foods).find(food => 
+                food.includes(searchTerm));
+
+            if (diseaseMatch) {
+                const disease = database.diseases[diseaseMatch];
+                resultDiv.innerHTML = `
+                    <div class="suggestion">
+                        <h3>Recommended for ${diseaseMatch}:</h3>
+                        <p><strong>Vitamins needed:</strong> ${disease.vitamins.join(', ')}</p>
+                        <p><strong>Recommended foods:</strong> ${disease.foods.join(', ')}</p>
+                        <p><strong>Why:</strong> ${disease.description}</p>
+                    </div>
+                `;
+            } else if (foodMatch) {
+                const food = database.foods[foodMatch];
+                resultDiv.innerHTML = `
+                    <div class="suggestion">
+                        <h3>${foodMatch.charAt(0).toUpperCase() + foodMatch.slice(1)}</h3>
+                        <p><strong>Contains:</strong> ${food.vitamins.join(', ')}</p>
+                        <p><strong>Benefits:</strong> ${food.benefits}</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <p class="error">No exact matches found. Try searching for common diseases like 'anemia' or foods like 'orange', 'spinach', 'banana'.</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

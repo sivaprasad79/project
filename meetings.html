@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Wellness Platform</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #64748b;
+            --success: #22c55e;
+            --background: #f1f5f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        body {
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #333;
+            padding: 0.5rem 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .meeting-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 0.5rem;
+            background: #e2e8f0;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 1rem;
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Wellness Hub</h1>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="meetings.html" style="font-size:x-large; font-weight: bolder; color: green;">Wellness Hub</a>
+        <a href="nutrition.html">Nutrition</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="mental.html">Mental Health</a>
+    </nav>
+    <div class="container">
+        <section id="dashboard">
+            <h2>Your Wellness Dashboard</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Steps Today</h3>
+                    <p class="steps-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Water Intake</h3>
+                    <p class="water-count">0/8</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Exercise Minutes</h3>
+                    <p class="exercise-count">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="meetings" class="grid">
+            <div class="card">
+                <h3>Upcoming Sessions</h3>
+                <div id="meetings-list"></div>
+            </div>
+        </section>
+
+        <section id="tracking" class="grid">
+            <div class="card">
+                <h3>Daily Progress</h3>
+                <div class="progress-item">
+                    <p>Steps Goal (10,000)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="steps-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // State management
+        const state = {
+            meetings: [
+                {
+                    title: "Morning Yoga",
+                    time: "07:00 AM",
+                    instructor: "Sarah",
+                    zoomLink: "https://zoom.us/j/123456789",
+                    participants: 12,
+                    maxParticipants: 20
+                },
+                {
+                    title: "HIIT Workout",
+                    time: "06:00 PM",
+                    instructor: "Mike",
+                    zoomLink: "https://zoom.us/j/987654321",
+                    participants: 15,
+                    maxParticipants: 25
+                }
+            ],
+            progress: {
+                steps: 0,
+                water: 0,
+                exercise: 0
+            }
+        };
+
+        // Render functions
+        function renderMeetings() {
+            const meetingsList = document.getElementById('meetings-list');
+            meetingsList.innerHTML = state.meetings.map(meeting => `
+                <div class="meeting-card">
+                    <div>
+                        <h4>${meeting.title}</h4>
+                        <p>${meeting.time} with ${meeting.instructor}</p>
+                        <p>${meeting.participants}/${meeting.maxParticipants} participants</p>
+                    </div>
+                    <a href="${meeting.zoomLink}" class="btn btn-primary" target="_blank">Join</a>
+                </div>
+            `).join('');
+        }
+
+        function updateProgress() {
+            state.progress.steps = Math.floor(Math.random() * 10000);
+            state.progress.water = Math.floor(Math.random() * 8);
+            state.progress.exercise = Math.floor(Math.random() * 60);
+
+            document.querySelector('.steps-count').textContent = state.progress.steps;
+            document.querySelector('.water-count').textContent = `${state.progress.water}/8`;
+            document.querySelector('.exercise-count').textContent = state.progress.exercise;
+            
+            document.getElementById('steps-progress').style.width = 
+                `${(state.progress.steps / 10000) * 100}%`;
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMeetings();
+            updateProgress();
+            setInterval(updateProgress, 5000); // Update progress every 5 seconds
+        });
+
+        // Add tracking functionality
+        const addSteps = () => {
+            state.progress.steps += 100;
+            updateProgress();
+        };
+
+        const addWater = () => {
+            if (state.progress.water < 8) {
+                state.progress.water++;
+                updateProgress();
+            }
+        };
+    </script>
+</body>
+</html>

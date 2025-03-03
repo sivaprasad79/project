@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Wellness Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container {
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #a8e6cf;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #a8e6cf;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #88d6bf;
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .switch-form a {
+            color: #a8e6cf;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            .input-group input {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="signupForm">
+            <h2>Create Account</h2>
+            <form onsubmit="return handleSignup(event)">
+                <div class="input-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div class="error" id="nameError"></div>
+                </div>
+                <div class="input-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                    <div class="error" id="emailError"></div>
+                </div>
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div class="error" id="passwordError"></div>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="switch-form">
+                Already have an account? <a onclick="toggleForm()">Login</a>
+            </div>
+        </div>
+
+        <div class="form-container" id="loginForm" style="display: none;">
+            <h2>Welcome Back</h2>
+            <form onsubmit="return handleLogin(event)">
+                <div class="input-group">
+                   <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error" id="loginEmailError"></div>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error" id="loginPasswordError"></div>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch-form">
+                Don't have an account? <a onclick="toggleForm()">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store user data
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        function toggleForm() {
+            const signupForm = document.getElementById('signupForm');
+            const loginForm = document.getElementById('loginForm');
+            
+            if (signupForm.style.display === 'none') {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+            
+            // Clear all error messages
+            clearErrors();
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(error => {
+                error.style.display = 'none';
+                error.textContent = '';
+            });
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            clearErrors();
+
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            // Basic validation
+            if (name.length < 2) {
+                showError('nameError', 'Name must be at least 2 characters long');
+                return false;
+            }
+
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showError('emailError', 'Please enter a valid email address');
+                return false;
+            }
+
+            if (password.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters long');
+                return false;
+            }
+
+            // Check if email already exists
+            if (users.some(user => user.email === email)) {
+                showError('emailError', 'This email is already registered');
+                return false;
+            }
+
+            // Add new user
+            users.push({ name, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Account created successfully! Please login.');
+            toggleForm();
+            return false;
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            clearErrors();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Find user
+            const user = users.find(u => u.email === email);
+
+            if (!user) {
+                showError('loginEmailError', 'Email not found');
+                return false;
+            }
+
+            if (user.password !== password) {
+                showError('loginPasswordError', 'Incorrect password');
+                return false;
+            }
+
+            alert('Login successful! Welcome ' + user.name);
+            window.location.href = 'home.html';
+            // Here you would typically redirect to the dashboard or home page
+            return false;
+        }
+    </script>
+</body>
+</html>

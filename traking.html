@@ -1,0 +1,373 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWalk Exoskeleton Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="row py-4">
+            <div class="col d-flex justify-content-between align-items-center">
+                <button style="width: 30px; height: 40px;border-radius: 5px; background-color: rgb(212, 212, 219);" id="btn" onclick="bt()"><</button>
+                <h1>ReWalk Exoskeleton Monitor</h1>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-battery-full text-success me-2"></i>
+                    <span class="fs-4 fw-bold battery-level">95%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#overview">
+                    <i class="fas fa-chart-line me-2"></i>Overview
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#gaitAnalysis">
+                    <i class="fas fa-walking me-2"></i>Gait Analysis
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#settings">
+                    <i class="fas fa-cog me-2"></i>Settings
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Overview Tab -->
+            <div class="tab-pane fade show active" id="overview">
+                <!-- Quick Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Steps Today</h5>
+                                <p class="card-text display-6" id="stepCount">2,450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Walking Speed</h5>
+                                <p class="card-text display-6" id="walkingSpeed">0.8 m/s</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Balance Score</h5>
+                                <p class="card-text display-6" id="balanceScore">85%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Gait Symmetry</h5>
+                                <p class="card-text display-6" id="gaitSymmetry">90%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Chart -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Session Progress</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="progressChart" height="300"></canvas>
+                    </div>
+                </div>
+
+                <!-- Alerts -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">System Alerts</h5>
+                    </div>
+                    <div class="card-body" id="alertsContainer">
+                        <!-- Alerts will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gait Analysis Tab -->
+            <div class="tab-pane fade" id="gaitAnalysis">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Leg Power Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas id="gaitChart" height="300"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <h6>Right Leg Power</h6>
+                                    <div class="progress">
+                                        <div id="rightLegProgress" class="progress-bar bg-warning" role="progressbar" style="width: 75%">75%</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6>Left Leg Power</h6>
+                                    <div class="progress">
+                                        <div id="leftLegProgress" class="progress-bar bg-info" role="progressbar" style="width: 73%">73%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-pane fade" id="settings">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Exoskeleton Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Assistance Level (%)</label>
+                                    <input type="range" class="form-range" id="assistanceLevel" min="0" max="100" value="75">
+                                    <span id="assistanceLevelValue">75%</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Maximum Speed (m/s)</label>
+                                    <input type="range" class="form-range" id="maxSpeed" min="0" max="2" step="0.1" value="1.2">
+                                    <span id="maxSpeedValue">1.2 m/s</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Step Height (cm)</label>
+                                    <input type="range" class="form-range" id="stepHeight" min="10" max="30" value="18">
+                                    <span id="stepHeightValue">18 cm</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Stride Length (cm)</label>
+                                    <input type="range" class="form-range" id="strideLength" min="30" max="60" value="45">
+                                    <span id="strideLengthValue">45 cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+     <style>
+        /* styles.css */
+body {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress {
+    height: 25px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+}
+
+.form-range {
+    width: 100%;
+}
+
+.alert {
+    margin-bottom: 10px;
+}
+
+.battery-level {
+    font-size: 1.2rem;
+}
+     </style>
+    <script>
+        // script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Sample data
+    const sessionData = {
+        labels: ['09:00', '09:15', '09:30', '09:45', '10:00', '10:15'],
+        datasets: [
+            {
+                label: 'Walking Speed',
+                data: [0.8, 0.9, 0.85, 0.95, 1.0, 0.9],
+                borderColor: '#dc3545',
+                tension: 0.4
+            },
+            {
+                label: 'Balance Score',
+                data: [85, 87, 86, 88, 90, 89],
+                borderColor: '#198754',
+                tension: 0.4
+            },
+            {
+                label: 'Gait Symmetry',
+                data: [90, 92, 91, 93, 94, 92],
+                borderColor: '#0d6efd',
+                tension: 0.4
+            }
+        ]
+    };
+
+    // Initialize Progress Chart
+    const progressCtx = document.getElementById('progressChart').getContext('2d');
+    new Chart(progressCtx, {
+        type: 'line',
+        data: sessionData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Initialize Gait Chart
+    const gaitCtx = document.getElementById('gaitChart').getContext('2d');
+    new Chart(gaitCtx, {
+        type: 'bar',
+        data: {
+            labels: ['09:00', '09:15', '09:30', '09:45', '10:00', '10:15'],
+            datasets: [
+                {
+                    label: 'Right Leg Power',
+                    data: [75, 78, 76, 79, 80, 78],
+                    backgroundColor: '#ffc107'
+                },
+                {
+                    label: 'Left Leg Power',
+                    data: [73, 76, 74, 77, 78, 76],
+                    backgroundColor: '#0dcaf0'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+
+    // Settings event listeners
+    const settings = {
+        assistanceLevel: document.getElementById('assistanceLevel'),
+        maxSpeed: document.getElementById('maxSpeed'),
+        stepHeight: document.getElementById('stepHeight'),
+        strideLength: document.getElementById('strideLength')
+    };
+
+    // Update settings values
+    Object.keys(settings).forEach(key => {
+        const element = settings[key];
+        const valueDisplay = document.getElementById(`${key}Value`);
+        
+        element.addEventListener('input', function() {
+            let value = this.value;
+            switch(key) {
+                case 'assistanceLevel':
+                    valueDisplay.textContent =` ${value}%`;
+                    break;
+                case 'maxSpeed':
+                    valueDisplay.textContent = `${value} m/s`;
+                    break;
+                case 'stepHeight':
+                case 'strideLength':
+                    valueDisplay.textContent = `${value} cm`;
+                    break;
+            }
+        });
+    });
+
+    // Sample alerts
+    const alerts = [
+        { type: 'warning', message: 'Right knee joint requires calibration' },
+        { type: 'info', message: 'Battery at 25% - consider charging soon' }
+    ];
+
+    // Render alerts
+    const alertsContainer = document.getElementById('alertsContainer');
+    alerts.forEach(alert => {
+        const alertElement = document.createElement('div');
+        alertElement.className = `alert alert-${alert.type}`;
+        alertElement.innerHTML = `
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            ${alert.message}
+        `;
+        alertsContainer.appendChild(alertElement);
+    });
+
+    // Simulate real-time updates
+    setInterval(() => {
+        // Update random values for demonstration
+        document.getElementById('stepCount').textContent = Math.floor(2000 + Math.random() * 1000);
+        document.getElementById('walkingSpeed').textContent = (0.7 + Math.random() * 0.5).toFixed(1) + ' m/s';
+        document.getElementById('balanceScore').textContent = Math.floor(80 + Math.random() * 20) + '%';
+        document.getElementById('gaitSymmetry').textContent = Math.floor(85 + Math.random() * 15) + '%';
+        
+        // Update battery level
+        const batteryLevel = document.querySelector('.battery-level');
+        let currentLevel = parseInt(batteryLevel.textContent);
+        if (currentLevel > 5) {
+            currentLevel -= 1;
+            batteryLevel.textContent = currentLevel + '%';
+        }
+    }, 5000);
+});
+function bt(){
+    window.location.href = 'exercise.html';
+}
+    </script>
+</body>
+</html>
